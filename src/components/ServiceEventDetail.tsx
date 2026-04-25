@@ -43,7 +43,7 @@ export function ServiceEventDetail({ event }: { event?: ServiceEventWithItems })
       <CardContent>
         <ol className="space-y-3">
           {event.items.map((item, index) => (
-            <li key={item.id} className="rounded-lg border bg-white p-3">
+            <li key={item.id} className="rounded-lg border bg-card p-3">
               <div className="flex gap-3">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-secondary text-sm font-semibold text-secondary-foreground">
                   {index + 1}

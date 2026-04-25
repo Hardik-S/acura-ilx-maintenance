@@ -1,6 +1,6 @@
 # 2015 Acura ILX Maintenance
 
-A local-first maintenance history web app for a 2015 Acura ILX. The app imports the original spreadsheet semantics into grouped service events, keeps each spreadsheet service row as a line item, and stores data in the browser with IndexedDB.
+A Supabase-backed maintenance history web app for a 2015 Acura ILX. The app imports the original spreadsheet semantics into grouped service events, keeps each spreadsheet service row as a line item, and protects the shared data behind admin accounts.
 
 ## Features
 
@@ -8,9 +8,11 @@ A local-first maintenance history web app for a 2015 Acura ILX. The app imports 
 - Maintenance history with search, date filters, odometer filters, and grouped service detail.
 - Add/edit service events with multiple line items.
 - Torque spec reference with add/edit support.
-- Browser-side `.xlsx` import using a real workbook parser.
+- Browser-side `.xlsx` import using a real workbook parser, saved to Supabase.
 - JSON and CSV export.
-- Static Next.js export for GitHub Pages.
+- Supabase Auth with email password reset and forced first-login password changes.
+- Profile menu with logout, preferences, dark mode, password changes, and Talk to Codex.
+- Deterministic Talk to Codex flow that creates GitHub issues through a server route.
 
 ## Spreadsheet Semantics
 
@@ -26,6 +28,8 @@ npm install
 npm run dev
 ```
 
+Create `.env.local` with the variables in `docs/supabase-env-setup.md`.
+
 ## Verification
 
 ```bash
@@ -35,12 +39,6 @@ npm test
 npm run build
 ```
 
-## GitHub Pages
+## Netlify
 
-The workflow in `.github/workflows/pages.yml` builds with `GITHUB_PAGES=true`, exports static files to `out`, uploads the artifact, and deploys it with GitHub Pages.
-
-Expected hosted URL:
-
-```text
-https://hardik-s.github.io/acura-ilx-maintenance/
-```
+This app now needs a server-capable Next.js host for auth callbacks and GitHub issue creation. `netlify.toml` builds with `npm run build` and publishes `.next`.

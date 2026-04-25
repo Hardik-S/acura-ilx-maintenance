@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { ServiceEventForm } from "@/components/ServiceEventForm";
 import { Button } from "@/components/ui/button";
-import { saveServiceEvent } from "@/lib/storage/repository";
+import { saveServiceEvent } from "@/lib/data/repository";
 
 export default function NewServiceEventPage() {
   const router = useRouter();

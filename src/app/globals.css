@@ -23,6 +23,26 @@
   --radius: 0.5rem;
 }
 
+.dark {
+  --background: 215 25% 10%;
+  --foreground: 210 28% 94%;
+  --card: 218 22% 14%;
+  --card-foreground: 210 28% 94%;
+  --primary: 193 84% 52%;
+  --primary-foreground: 210 40% 8%;
+  --secondary: 173 28% 22%;
+  --secondary-foreground: 175 70% 88%;
+  --muted: 217 18% 20%;
+  --muted-foreground: 214 12% 70%;
+  --accent: 43 62% 28%;
+  --accent-foreground: 44 90% 92%;
+  --destructive: 0 68% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 217 18% 25%;
+  --input: 217 18% 25%;
+  --ring: 193 84% 55%;
+}
+
 * {
   border-color: hsl(var(--border));
 }
@@ -37,6 +57,12 @@ body {
     linear-gradient(180deg, rgba(236, 245, 247, 0.9), rgba(247, 250, 252, 1) 420px),
     hsl(var(--background));
   color: hsl(var(--foreground));
+}
+
+.dark body {
+  background:
+    linear-gradient(180deg, rgba(12, 28, 34, 0.95), rgba(15, 23, 32, 1) 420px),
+    hsl(var(--background));
 }
 
 button,

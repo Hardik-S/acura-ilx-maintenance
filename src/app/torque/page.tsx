@@ -10,8 +10,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { saveTorqueSpec } from "@/lib/storage/repository";
-import { useMaintenanceData } from "@/lib/storage/useMaintenanceData";
+import { saveTorqueSpec } from "@/lib/data/repository";
+import { useMaintenanceData } from "@/lib/data/useMaintenanceData";
 
 const emptyForm = { component: "", spec: "", notes: "" };
 
@@ -64,7 +64,7 @@ export default function TorquePage() {
   }
 
   if (error) {
-    return <p className="rounded-lg border bg-white p-4 text-sm text-destructive">{error}</p>;
+    return <p className="rounded-lg border bg-card p-4 text-sm text-destructive">{error}</p>;
   }
 
   return (

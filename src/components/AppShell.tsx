@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CarFront, Database, Gauge, History, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ProfileMenu } from "@/components/ProfileMenu";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: Gauge },
@@ -17,7 +18,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-30 border-b bg-white/92 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b bg-card/92 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <Link href="/" className="flex min-w-0 items-center gap-3">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
@@ -48,12 +49,13 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
               );
             })}
           </nav>
+          <ProfileMenu />
         </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">{children}</main>
 
-      <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t bg-white md:hidden">
+      <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t bg-card md:hidden">
         <div className="grid grid-cols-4">
           {navItems.map((item) => {
             const active =

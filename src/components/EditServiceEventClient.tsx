@@ -8,8 +8,7 @@ import type { ServiceEventWithItems } from "@/lib/domain/types";
 import { LoadingState } from "@/components/LoadingState";
 import { ServiceEventForm } from "@/components/ServiceEventForm";
 import { Button } from "@/components/ui/button";
-import { bootstrapDatabase } from "@/lib/storage/bootstrap";
-import { loadServiceEvent, saveServiceEvent } from "@/lib/storage/repository";
+import { loadServiceEvent, saveServiceEvent } from "@/lib/data/repository";
 
 export function EditServiceEventClient() {
   const searchParams = useSearchParams();
@@ -24,7 +23,6 @@ export function EditServiceEventClient() {
       setLoading(true);
       setError("");
       try {
-        await bootstrapDatabase();
         const loadedEvent = id ? await loadServiceEvent(id) : undefined;
         setEvent(loadedEvent);
         if (!loadedEvent) {
@@ -53,7 +51,7 @@ export function EditServiceEventClient() {
             Back to history
           </Link>
         </Button>
-        <p className="rounded-lg border bg-white p-4 text-sm text-destructive">{error}</p>
+        <p className="rounded-lg border bg-card p-4 text-sm text-destructive">{error}</p>
       </div>
     );
   }

@@ -105,7 +105,7 @@ export function ServiceEventForm({ initialEvent, onSubmit }: ServiceEventFormPro
         </CardHeader>
         <CardContent className="space-y-4">
           {items.map((item, index) => (
-            <div key={item.id ?? index} className="rounded-lg border bg-white p-3">
+            <div key={item.id ?? index} className="rounded-lg border bg-card p-3">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-medium">Item {index + 1}</p>
                 <Button
@@ -165,7 +165,7 @@ export function ServiceEventForm({ initialEvent, onSubmit }: ServiceEventFormPro
         </CardContent>
       </Card>
 
-      <div className="sticky bottom-16 z-20 rounded-lg border bg-white p-3 shadow-subtle md:static md:border-0 md:bg-transparent md:p-0 md:shadow-none">
+      <div className="sticky bottom-16 z-20 rounded-lg border bg-card p-3 shadow-subtle md:static md:border-0 md:bg-transparent md:p-0 md:shadow-none">
         <Button type="submit" className="w-full sm:w-auto" disabled={saving}>
           <Save className="h-4 w-4" aria-hidden="true" />
           {saving ? "Saving" : "Save service event"}

@@ -8,9 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { snapshotToMaintenanceCsv, snapshotToTorqueCsv } from "@/lib/export/csv";
 import { snapshotToJson } from "@/lib/export/json";
-import { resetToSeedData } from "@/lib/storage/bootstrap";
-import { importParsedWorkbook } from "@/lib/storage/repository";
-import { useMaintenanceData } from "@/lib/storage/useMaintenanceData";
+import { importParsedWorkbook, resetToSeedData } from "@/lib/data/repository";
+import { useMaintenanceData } from "@/lib/data/useMaintenanceData";
 import { downloadText } from "@/lib/utils";
 
 export default function DataPage() {
@@ -65,7 +64,7 @@ export default function DataPage() {
   }
 
   if (error || !snapshot) {
-    return <p className="rounded-lg border bg-white p-4 text-sm text-destructive">{error}</p>;
+    return <p className="rounded-lg border bg-card p-4 text-sm text-destructive">{error}</p>;
   }
 
   return (
@@ -73,7 +72,7 @@ export default function DataPage() {
       <div>
         <h1 className="text-2xl font-semibold tracking-normal">Data</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Data is stored in this browser with IndexedDB. Export before switching devices or clearing browser storage.
+          Data is stored in Supabase. Exports include the shared admin-managed maintenance dataset.
         </p>
       </div>
 
@@ -98,7 +97,7 @@ export default function DataPage() {
             </Button>
             {message ? <p className="rounded-md bg-muted px-3 py-2 text-sm">{message}</p> : null}
             {warnings.length > 0 ? (
-              <div className="rounded-md border bg-white p-3">
+              <div className="rounded-md border bg-card p-3">
                 <p className="text-sm font-medium">Import warnings</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
                   {warnings.map((warning) => (
@@ -144,7 +143,7 @@ export default function DataPage() {
               onClick={async () => {
                 await resetToSeedData();
                 await refresh();
-                setMessage("Local data reset to the inspected spreadsheet seed.");
+                setMessage("Remote data reset to the inspected spreadsheet seed.");
               }}
             >
               <RotateCcw className="h-4 w-4" aria-hidden="true" />
@@ -161,7 +160,7 @@ export default function DataPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {snapshot.importBatches.map((batch) => (
-            <div key={batch.id} className="rounded-lg border bg-white p-3">
+            <div key={batch.id} className="rounded-lg border bg-card p-3">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="font-medium">{batch.sourceFilename}</p>
                 <Badge>{batch.status}</Badge>
@@ -182,7 +181,7 @@ export default function DataPage() {
           <CardContent>
             <ul className="space-y-2 text-sm text-muted-foreground">
               {rowWarnings.map((warning) => (
-                <li key={`${warning.row}-${warning.warning}`} className="rounded-md border bg-white p-2">
+                <li key={`${warning.row}-${warning.warning}`} className="rounded-md border bg-card p-2">
                   Row {warning.row}: {warning.warning}
                 </li>
               ))}

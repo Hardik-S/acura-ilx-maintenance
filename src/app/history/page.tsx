@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useMaintenanceData } from "@/lib/storage/useMaintenanceData";
+import { useMaintenanceData } from "@/lib/data/useMaintenanceData";
 
 export default function HistoryPage() {
   const { events, loading, error } = useMaintenanceData();
@@ -56,7 +56,7 @@ export default function HistoryPage() {
   }
 
   if (error) {
-    return <p className="rounded-lg border bg-white p-4 text-sm text-destructive">{error}</p>;
+    return <p className="rounded-lg border bg-card p-4 text-sm text-destructive">{error}</p>;
   }
 
   return (
