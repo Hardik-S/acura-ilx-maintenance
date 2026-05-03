@@ -66,6 +66,26 @@ describe("parseMaintenanceWorkbook", () => {
     });
     expect(parsed.warnings).toHaveLength(0);
   });
+
+  it("warns and leaves the event odometer unknown when a row has negative mileage", async () => {
+    const workbook = new ExcelJS.Workbook();
+    const sheet = workbook.addWorksheet("Sheet1");
+    sheet.getCell("A1").value = "Date";
+    sheet.getCell("B1").value = "Service Item";
+    sheet.getCell("C1").value = "Odometer";
+    sheet.getCell("D1").value = "Notes";
+    sheet.getCell("A2").value = 46123;
+    sheet.getCell("B2").value = "Oil service";
+    sheet.getCell("C2").value = -100;
+    sheet.getCell("D2").value = "Impossible odometer from source workbook";
+
+    const buffer = await workbook.xlsx.writeBuffer();
+    const parsed = await parseMaintenanceWorkbook(toArrayBuffer(buffer), "maintenance.xlsx");
+
+    expect(parsed.serviceEvents[0]?.odometer).toBe(0);
+    expect(parsed.sourceRows[0]?.parsedOdometer).toBeUndefined();
+    expect(parsed.warnings).toEqual(["Row 2: odometer could not be parsed."]);
+  });
 });
 
 function toArrayBuffer(buffer: ArrayBuffer | Buffer) {
