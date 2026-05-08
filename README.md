@@ -19,6 +19,12 @@ A local-first maintenance history web app for a 2015 Acura ILX. The app imports 
 - Torque specs in `F:G` are imported as separate reference entries.
 - Raw source row values and parser warnings are retained for auditability.
 
+## Data Storage and Backups
+
+- Maintenance data is written only to the current browser's IndexedDB database.
+- Export JSON before clearing site data, switching browsers or devices, or importing experimental workbook changes.
+- Keep a JSON export as the restore point before using the reset-to-seed action.
+
 ## Local Development
 
 ```bash
