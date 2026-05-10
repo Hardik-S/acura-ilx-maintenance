@@ -317,7 +317,7 @@ function parseOdometer(value: string) {
   }
 
   const parsed = Number(normalized);
-  if (!Number.isFinite(parsed)) {
+  if (!Number.isFinite(parsed) || parsed < 0) {
     return undefined;
   }
 
